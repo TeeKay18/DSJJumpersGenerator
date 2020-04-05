@@ -1,0 +1,3 @@
+Possible new features: 
+- total customization of jumpers (name, country, player)
+- deleting/editing names of existing jumpers by some rule
