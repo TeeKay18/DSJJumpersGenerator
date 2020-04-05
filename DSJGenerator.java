@@ -23,7 +23,8 @@ Scene scene;
         scene = new Scene(root);
         stage.setResizable(false);
         stage.setScene(scene);
-        stage.setTitle("DSJ4 Jumpers Generator v.1.0.3");
+        Constants constants = new Constants();
+        stage.setTitle(constants.get_program_name() + constants.get_version());
         stage.show();
     }
     

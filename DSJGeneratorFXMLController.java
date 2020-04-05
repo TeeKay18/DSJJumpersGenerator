@@ -46,7 +46,13 @@ public class DSJGeneratorFXMLController implements Initializable {
     //pomiar czasu tworzenia skoczkow, licznik skoczkow
     @FXML
     private CheckBox checkbox1, checkbox2;
-   
+    
+    private TextField[] textfields;
+    private ColorPicker[] colorpickers;
+    private ChoiceBox[] choiceboxes;
+    
+    private Constants constants;
+    
     String script = "";
     String errors = "";
     String settings = "";
@@ -56,6 +62,18 @@ public class DSJGeneratorFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        textfields = new TextField[]{textfield0, textfield1, 
+        textfield2, textfield4, textfield5};
+        
+        colorpickers = new ColorPicker[]{colorpicker1, colorpicker2, 
+            colorpicker3, colorpicker4, colorpicker5, colorpicker6, 
+            colorpicker7, colorpicker8, colorpicker9, colorpicker10, 
+            colorpicker11};
+        
+        choiceboxes = new ChoiceBox[]{choicebox1, choicebox2};
+        
+        constants = new Constants();
+       
         choicebox1.setValue("Szybki");
         choicebox1.setItems(FXCollections.observableArrayList("Szybki", 
                 "Superszybki"));
@@ -217,9 +235,7 @@ public class DSJGeneratorFXMLController implements Initializable {
           }
        }
        if (a.length() > 3)
-       {
            error("Skrot kraju jest maksymalnie 3-literowy. \n");
-       }
     }
 
     private void check_textfield5() 
@@ -247,7 +263,8 @@ public class DSJGeneratorFXMLController implements Initializable {
     public void info()
     {
         setAlert(AlertType.INFORMATION, "Informacje o programie", 
-         "DSJ4 Jumpers Generator v.1.0.3", "Autor programu: Tomasz Karciarz "
+         constants.get_program_name() + constants.get_version(), 
+         "Autor programu: Tomasz Karciarz "
         + "(e-mail: tommkar321@wp.pl) \n\n"
         + "Wszystkie potrzebne informacje na temat programu"
                  + " sa dostepne w pliku README.txt.");
@@ -284,24 +301,12 @@ public class DSJGeneratorFXMLController implements Initializable {
             
             try (FileWriter writer = new FileWriter(file)) 
             {
-                wnew(textfield0.getText());
-                wnew(textfield1.getText());
-                wnew(textfield2.getText());
-                wnew(textfield4.getText());
-                wnew(textfield5.getText());
-                wnew(colorpicker1.getValue().toString().substring(2,8));
-                wnew(colorpicker2.getValue().toString().substring(2,8));
-                wnew(colorpicker3.getValue().toString().substring(2,8));
-                wnew(colorpicker4.getValue().toString().substring(2,8));
-                wnew(colorpicker5.getValue().toString().substring(2,8));
-                wnew(colorpicker6.getValue().toString().substring(2,8));
-                wnew(colorpicker7.getValue().toString().substring(2,8));
-                wnew(colorpicker8.getValue().toString().substring(2,8));
-                wnew(colorpicker9.getValue().toString().substring(2,8));
-                wnew(colorpicker10.getValue().toString().substring(2,8));
-                wnew(colorpicker11.getValue().toString().substring(2,8));
-                wnew(choicebox1.getValue());
-                wnew(choicebox2.getValue());
+                for (TextField field : textfields)
+                    wnew(field.getText());
+                for (ColorPicker picker : colorpickers)
+                    wnew(picker.getValue().toString().substring(2,8));
+                for (ChoiceBox box : choiceboxes)
+                    wnew((String) box.getValue());
                 writer.write(settings);
                 writer.close();
             }
@@ -362,39 +367,22 @@ public class DSJGeneratorFXMLController implements Initializable {
 
     private void set_values(String[] array) 
     {
-        textfield0.setText(array[0]);
-        textfield1.setText(array[1]);
-        textfield2.setText(array[2]);
-        textfield4.setText(array[3]);
-        textfield5.setText(array[4]);
-        colorpicker1.setValue(Color.web(array[5]));
-        colorpicker2.setValue(Color.web(array[6]));
-        colorpicker3.setValue(Color.web(array[7]));
-        colorpicker4.setValue(Color.web(array[8]));
-        colorpicker5.setValue(Color.web(array[9]));
-        colorpicker6.setValue(Color.web(array[10]));
-        colorpicker7.setValue(Color.web(array[11]));
-        colorpicker8.setValue(Color.web(array[12]));
-        colorpicker9.setValue(Color.web(array[13]));
-        colorpicker10.setValue(Color.web(array[14]));
-        colorpicker11.setValue(Color.web(array[15]));
-        choicebox1.setValue(array[16]);
-        choicebox2.setValue(array[17]);
+        for (int i = 0; i < 5; i++)
+            textfields[i].setText(array[i]);
+        for (int i = 5; i < 16; i++)
+            colorpickers[i-5].setValue(Color.web(array[i]));
+        for (int i = 16; i < 18; i++)
+            choiceboxes[i-16].setValue(array[i]);
     }
     
     private void set_default_values()
     {
-        colorpicker1.setValue(Color.rgb(228, 104, 1));
-        colorpicker2.setValue(Color.rgb(0, 17, 174));
-        colorpicker3.setValue(Color.rgb(255, 255, 255));
-        colorpicker4.setValue(Color.rgb(169, 169, 170));
-        colorpicker5.setValue(Color.rgb(204, 1, 107));
-        colorpicker6.setValue(Color.rgb(0, 18, 158));
-        colorpicker7.setValue(Color.rgb(204, 1, 107));
-        colorpicker8.setValue(Color.rgb(0, 18, 158));
-        colorpicker9.setValue(Color.rgb(169, 169, 170));
-        colorpicker10.setValue(Color.rgb(57, 0, 95));
-        colorpicker11.setValue(Color.rgb(251, 218, 70));
+        String[] default_colors = constants.get_default_colors();
+        for (int i = 0; i < colorpickers.length; i++)
+        {
+            colorpickers[i].setValue(Color.web("#" + default_colors[i]));
+        }
+        
     }
 
     private void decision_write_country() 
@@ -430,57 +418,30 @@ public class DSJGeneratorFXMLController implements Initializable {
                 wn("");
         }
     }
+    
+    private void set_custom_part(String width, String height, 
+                                 String quickness, ColorPicker colorpicker)
+    {
+         wn("MouseMove, " + width + "*A_ScreenWidth, " 
+                          + height + "*A_ScreenHeight" + quickness);
+         wn("MouseClick, left");
+         clearhex();
+         wn("Send, " + colorpicker.getValue().toString().substring(2, 8));
+    }
 
     private void decision_suit_mode() 
     {
         String t = choicebox2.getValue(); //mode of creating suits
         if(t.equals("Własny"))
         {
-            //kask
-            wn("MouseMove, 0.096*A_ScreenWidth, 0.522*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker1.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.096*A_ScreenWidth, 0.552*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker2.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.096*A_ScreenWidth, 0.582*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker3.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.096*A_ScreenWidth, 0.612*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker4.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.214*A_ScreenWidth, 0.522*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker5.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.214*A_ScreenWidth, 0.552*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker6.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.214*A_ScreenWidth, 0.582*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker7.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.214*A_ScreenWidth, 0.612*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker8.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.332*A_ScreenWidth, 0.522*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker9.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.332*A_ScreenWidth, 0.552*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker10.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.332*A_ScreenWidth, 0.582*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker11.getValue().toString().substring(2, 8));
+            String[] swm = constants.get_suit_width_multipliers();
+            String[] shm = constants.get_suit_height_multipliers();
+            int c = 0; //licznik counter
+            while (c < 11)
+            {
+                set_custom_part(swm[c/4], shm[c%4], q, colorpickers[c]);
+                c++;
+            }
         }
         else if(t.equals("Losowy"))
         {
