@@ -13,11 +13,10 @@ package dsjgenerator;
 public class Constants 
 {
     private final String[] default_colors;
-    private final String version, program_name;
+    private final String version, program_name, c1_value, c2_value;
     private final String[] multipliers;
     private final String[] suit_width_multipliers;
     private final String[] suit_height_multipliers;
-    
     public Constants()
     {
         this.version = " v.1.0.3";
@@ -36,6 +35,8 @@ public class Constants
         this.suit_width_multipliers = new String[]{"0.096", "0.214", "0.332"};
         this.suit_height_multipliers = new String[]{"0.522", "0.552", 
                                                     "0.582", "0.612"};
+        this.c1_value = "Szybki";
+        this.c2_value = "Brak";
     }
     
     public String[] get_default_colors()
@@ -66,6 +67,16 @@ public class Constants
     public String[] get_suit_height_multipliers()
     {
         return suit_height_multipliers;
+    }
+    
+    public String get_choicebox1_value()
+    {
+        return c1_value;
+    }
+    
+    public String get_choicebox2_value()
+    {   
+        return c2_value;
     }
     
 }
