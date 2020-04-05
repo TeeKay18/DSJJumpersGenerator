@@ -21,6 +21,16 @@ public class ErrorsManager
         all_error_messages += err_msg;
     }
     
+    public int get_errors_no()
+    {
+        return errors_no;
+    }
+    
+    public String get_all_error_messages()
+    {
+        return all_error_messages;
+    }
+    
     
     
 }

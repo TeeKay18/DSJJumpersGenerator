@@ -42,7 +42,7 @@ public class Validator
     {
         String a = textfields[2].getText();
         int max_len = 24;
-        if(checkboxes[2].isSelected())
+        if(checkboxes[1].isSelected())
         {
            a += textfields[4].getText();
            max_len = 23;

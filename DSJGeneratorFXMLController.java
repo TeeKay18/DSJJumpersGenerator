@@ -88,10 +88,24 @@ public class DSJGeneratorFXMLController implements Initializable {
     @FXML
     protected void save_script(ActionEvent e) throws IOException 
     {
-        /* Settings new_settings = new Settings(textfields, colorpickers, 
+        Settings new_settings = new Settings(textfields, colorpickers, 
                                              choiceboxes, checkboxes);
-        validator.validate(); */
-        System.out.println("To be implemented 1");
+        validator = new Validator(new_settings);
+        ErrorsManager err_manager = validator.validate();
+        int err_no = err_manager.get_errors_no();
+        String err_msg = err_manager.get_all_error_messages();
+        if(err_no != 0)
+        {
+            AlertCreator creator = new AlertCreator();
+            creator.setAlert(AlertType.ERROR, 
+                            "Znaleziono " + err_no + " bledow", 
+                             "Znaleziono " + err_no + " bledow", 
+                             err_msg);
+        }
+        else
+        {
+            
+        }
     }
     
     @FXML
@@ -102,7 +116,10 @@ public class DSJGeneratorFXMLController implements Initializable {
 
     public void save_settings() 
     {
-        System.out.println("To be implemented 3");
+        Settings new_settings = new Settings(textfields, colorpickers, 
+                                             choiceboxes, checkboxes);
+        SettingsWriter writer = new SettingsWriter();
+        writer.save_settings(new_settings);
     }
     
     public void info()
