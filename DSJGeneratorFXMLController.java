@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -18,9 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 
 /**
  * FXML Controller class
@@ -36,11 +35,11 @@ public class DSJGeneratorFXMLController implements Initializable {
     //sciezka zapisu skryptu, sciezka DSJ4, nick, kod, kraj, ilosc skoczkow
     @FXML
     private TextField textfield0, textfield1, 
-            textfield2, textfield4, textfield5;
-    @FXML
-    private ColorPicker colorpicker1, colorpicker2, colorpicker3, colorpicker4,
-            colorpicker5, colorpicker6, colorpicker7, colorpicker8, 
-            colorpicker9, colorpicker10, colorpicker11;
+            textfield2, textfield4, textfield5, textfield6;
+//    @FXML
+//    private ColorPicker colorpicker1, colorpicker2, colorpicker3, colorpicker4,
+//            colorpicker5, colorpicker6, colorpicker7, colorpicker8, 
+//            colorpicker9, colorpicker10, colorpicker11;
     @FXML
     private ChoiceBox<String> choicebox1, choicebox2;
     //pomiar czasu tworzenia skoczkow, licznik skoczkow
@@ -80,12 +79,6 @@ public class DSJGeneratorFXMLController implements Initializable {
     {
         errors += error_msg;
         errors_no++;
-    }
-    
-    private void wnew(String string)
-    {
-        settings += string;
-        settings += "\n";
     }
     
     @FXML
@@ -164,16 +157,6 @@ public class DSJGeneratorFXMLController implements Initializable {
        }
     }
 
-    private void clearhex() 
-    {
-         wn("MouseMove, 0.362*A_ScreenWidth, 0.661*A_ScreenHeight, 0"); //hex
-         wn("MouseClick, left");
-         wn("Loop, 6");
-         wn("{");
-         wn("Send, `b");
-         wn("}");
-    }
-    
     private void check_textfield0() 
     {
         String a = textfield0.getText();
@@ -271,6 +254,13 @@ public class DSJGeneratorFXMLController implements Initializable {
        settings = "";
        q = "";
     }
+    
+    private void wnew(String string)
+    {
+        settings += string;
+        settings += "\n";
+    }
+    
 
     public void save_settings() 
     {
@@ -289,17 +279,7 @@ public class DSJGeneratorFXMLController implements Initializable {
                 wnew(textfield2.getText());
                 wnew(textfield4.getText());
                 wnew(textfield5.getText());
-                wnew(colorpicker1.getValue().toString().substring(2,8));
-                wnew(colorpicker2.getValue().toString().substring(2,8));
-                wnew(colorpicker3.getValue().toString().substring(2,8));
-                wnew(colorpicker4.getValue().toString().substring(2,8));
-                wnew(colorpicker5.getValue().toString().substring(2,8));
-                wnew(colorpicker6.getValue().toString().substring(2,8));
-                wnew(colorpicker7.getValue().toString().substring(2,8));
-                wnew(colorpicker8.getValue().toString().substring(2,8));
-                wnew(colorpicker9.getValue().toString().substring(2,8));
-                wnew(colorpicker10.getValue().toString().substring(2,8));
-                wnew(colorpicker11.getValue().toString().substring(2,8));
+                wnew(textfield6.getText());
                 wnew(choicebox1.getValue());
                 wnew(choicebox2.getValue());
                 writer.write(settings);
@@ -327,7 +307,7 @@ public class DSJGeneratorFXMLController implements Initializable {
         BufferedReader fileReader = null;
         try 
         {
-            int hml = 18; //how many newlines should be in text
+            int hml = 8; //how many newlines should be in text
             fileReader = new BufferedReader(new FileReader(filePath));
             String line;
             int h_m = 0; //how many newlines read so far
@@ -367,42 +347,27 @@ public class DSJGeneratorFXMLController implements Initializable {
         textfield2.setText(array[2]);
         textfield4.setText(array[3]);
         textfield5.setText(array[4]);
-        colorpicker1.setValue(Color.web(array[5]));
-        colorpicker2.setValue(Color.web(array[6]));
-        colorpicker3.setValue(Color.web(array[7]));
-        colorpicker4.setValue(Color.web(array[8]));
-        colorpicker5.setValue(Color.web(array[9]));
-        colorpicker6.setValue(Color.web(array[10]));
-        colorpicker7.setValue(Color.web(array[11]));
-        colorpicker8.setValue(Color.web(array[12]));
-        colorpicker9.setValue(Color.web(array[13]));
-        colorpicker10.setValue(Color.web(array[14]));
-        colorpicker11.setValue(Color.web(array[15]));
-        choicebox1.setValue(array[16]);
-        choicebox2.setValue(array[17]);
+        textfield6.setText(array[5]);
+        choicebox1.setValue(array[6]);
+        choicebox2.setValue(array[7]);
     }
     
     private void set_default_values()
     {
-        colorpicker1.setValue(Color.rgb(228, 104, 1));
-        colorpicker2.setValue(Color.rgb(0, 17, 174));
-        colorpicker3.setValue(Color.rgb(255, 255, 255));
-        colorpicker4.setValue(Color.rgb(169, 169, 170));
-        colorpicker5.setValue(Color.rgb(204, 1, 107));
-        colorpicker6.setValue(Color.rgb(0, 18, 158));
-        colorpicker7.setValue(Color.rgb(204, 1, 107));
-        colorpicker8.setValue(Color.rgb(0, 18, 158));
-        colorpicker9.setValue(Color.rgb(169, 169, 170));
-        colorpicker10.setValue(Color.rgb(57, 0, 95));
-        colorpicker11.setValue(Color.rgb(251, 218, 70));
+        textfield0.setText("");
+        textfield1.setText("");
+        textfield2.setText("");
+        textfield4.setText("");
+        textfield5.setText("");
+        choicebox1.setValue("");
+        choicebox2.setValue("");
     }
-
+ 
     private void decision_write_country() 
     {
         if(!"".equals(textfield4.getText())) 
         {
-           wn("MouseMove, 0.174*A_ScreenWidth, 0.221*A_ScreenHeight, 0");
-           wn("MouseClick, left");
+           click_position("0.174", "0.221");
            wn("Send, " + textfield4.getText());
         }
     }
@@ -411,8 +376,7 @@ public class DSJGeneratorFXMLController implements Initializable {
     {
         if(!"".equals(textfield2.getText()))
         {
-            wn("MouseMove, 0.263*A_ScreenWidth, 0.1809*A_ScreenHeight, 0");
-            wn("MouseClick, left");
+            click_position("0.263", "0.1809");
             //piszemy nazwe gracza z kodem
             w("Send, " + textfield2.getText());
             if (selected)
@@ -430,62 +394,33 @@ public class DSJGeneratorFXMLController implements Initializable {
                 wn("");
         }
     }
+    
+    private void mouse_click_left() {
+        wn("MouseClick, left");
+    }
+    
+    private void set_cursor_position(String str_width, String str_height) {
+        wn("MouseMove, " + str_width + "*A_ScreenWidth, " + str_height + "*A_ScreenHeight" + q);
+    }
+    
+    private void click_position(String str_width, String str_height) {
+        set_cursor_position(str_width, str_height);
+        mouse_click_left();
+    }
 
     private void decision_suit_mode() 
     {
         String t = choicebox2.getValue(); //mode of creating suits
         if(t.equals("Własny"))
         {
-            //kask
-            wn("MouseMove, 0.096*A_ScreenWidth, 0.522*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker1.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.096*A_ScreenWidth, 0.552*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker2.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.096*A_ScreenWidth, 0.582*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker3.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.096*A_ScreenWidth, 0.612*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker4.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.214*A_ScreenWidth, 0.522*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker5.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.214*A_ScreenWidth, 0.552*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker6.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.214*A_ScreenWidth, 0.582*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker7.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.214*A_ScreenWidth, 0.612*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker8.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.332*A_ScreenWidth, 0.522*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker9.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.332*A_ScreenWidth, 0.552*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker10.getValue().toString().substring(2, 8));
-            wn("MouseMove, 0.332*A_ScreenWidth, 0.582*A_ScreenHeight" + q);
-            wn("MouseClick, left");
-            clearhex();
-            wn("Send, " + colorpicker11.getValue().toString().substring(2, 8));
+            click_position("0.09375", "0.8518"); //opcja Wczytaj...
+            click_position("0.505", "0.6296"); //wklep tekst
+            wn("Send, " + textfield6.getText()); // wklep tekst
+            click_position("0.35416", "0.6759"); // opcja Ok
         }
         else if(t.equals("Losowy"))
         {
-            wn("MouseMove, 0.335*A_ScreenWidth, 0.483*A_ScreenHeight" + q);
-            wn("MouseClick, left");
+            click_position("0.333", "0.8518");
         }
     }
 
@@ -500,14 +435,12 @@ public class DSJGeneratorFXMLController implements Initializable {
 
     private void go_to_new_player() 
     {
-      wn("MouseMove, 0.573*A_ScreenWidth, 0.949*A_ScreenHeight" + q);
-      wn("MouseClick, left");
+      click_position("0.573", "0.949");
     }
 
     private void end_create_player() 
     {
-        wn("MouseMove, 0.142*A_ScreenWidth, 0.949*A_ScreenHeight" + q);
-        wn("MouseClick, left");
+      click_position("0.142", "0.949");
     }
 
     private void run_dsj() 

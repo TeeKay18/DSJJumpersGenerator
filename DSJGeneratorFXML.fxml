@@ -14,28 +14,7 @@
       <TextField id="textfield2" fx:id="textfield2" layoutX="202.0" layoutY="86.0" prefHeight="26.0" prefWidth="275.0" promptText="przykłady: nick_KOD, nick KOD, nickKOD" />
       <TextField id="textfield4" fx:id="textfield4" layoutX="202.0" layoutY="121.0" prefHeight="26.0" prefWidth="51.0" />
       <TextField id="textfield5" fx:id="textfield5" layoutX="202.0" layoutY="161.0" prefHeight="26.0" prefWidth="51.0" promptText="&gt;=1" />
-      <ColorPicker fx:id="colorpicker1" layoutX="171.0" layoutY="358.0" />
-      <Text layoutX="117.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kask:" wrappingWidth="41.00000858306885" />
-      <Text layoutX="107.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gogle:" />
-      <Text layoutX="100.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kołnierz:" />
-      <ColorPicker id="colorpicker2" fx:id="colorpicker2" layoutX="171.0" layoutY="396.0" />
-      <ColorPicker id="colorpicker3" fx:id="colorpicker3" layoutX="171.0" layoutY="437.0" />
-      <ColorPicker id="colorpicker4" fx:id="colorpicker4" layoutX="171.0" layoutY="480.0" />
-      <Text layoutX="96.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rękawice:" />
-      <Text layoutX="352.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rękawy (P):" wrappingWidth="79.70051765441895" />
-      <Text layoutX="352.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rękawy (T):" wrappingWidth="79.70051765441895" />
-      <Text layoutX="352.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spodnie (P):" wrappingWidth="79.70051765441895" />
-      <Text layoutX="352.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spodnie (T):" wrappingWidth="79.70051765441895" />
-      <ColorPicker id="colorpicker5" fx:id="colorpicker5" layoutX="432.0" layoutY="358.0" />
-      <ColorPicker id="colorpicker6" fx:id="colorpicker6" layoutX="432.0" layoutY="396.0" />
-      <ColorPicker id="colorpicker7" fx:id="colorpicker7" layoutX="432.0" layoutY="437.0" />
-      <ColorPicker id="colorpicker8" fx:id="colorpicker8" layoutX="432.0" layoutY="480.0" />
-      <Text layoutX="587.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Buty:" wrappingWidth="79.70051765441895" />
-      <Text layoutX="587.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wiązania:" wrappingWidth="79.70051765441895" />
-      <Text layoutX="587.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Narty:" wrappingWidth="79.70051765441895" />
-      <ColorPicker id="colorpicker9" fx:id="colorpicker9" layoutX="650.0" layoutY="358.0" />
-      <ColorPicker id="colorpicker10" fx:id="colorpicker10" layoutX="650.0" layoutY="396.0" />
-      <ColorPicker id="colorpicker11" fx:id="colorpicker11" layoutX="650.0" layoutY="437.0" />
+      <TextField id="textfield6" fx:id="textfield6" layoutX="202.0" layoutY="271.0" prefHeight="26.0" prefWidth="275.0" />
       <Button id="button" layoutX="676.0" layoutY="536.0" mnemonicParsing="false" onAction="#save_script" text="Utwórz skrypt" />
       <Text layoutX="2.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ścieżka do zapisu skryptu:" textAlignment="RIGHT" wrappingWidth="196.99999904632568" />
       <TextField id="textfield1" fx:id="textfield0" layoutX="202.0" layoutY="20.0" prefHeight="26.0" prefWidth="512.0" promptText="np. C:\skrypty\skrypt.ahk" />
@@ -44,18 +23,19 @@
       <ChoiceBox fx:id="choicebox1" layoutX="202.0" layoutY="196.0" prefWidth="150.0" />
       <Button layoutX="534.0" layoutY="536.0" mnemonicParsing="false" onAction="#save_settings" text="Zapisz ustawienia" />
       <Button layoutX="403.0" layoutY="536.0" mnemonicParsing="false" onAction="#run_script" text="Uruchom skrypt" />
-      <Text layoutX="241.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UWAGA: ilość znaków (nick+kod) nie może przekroczyć 24 znaków." textAlignment="CENTER" />
+      <Text layoutX="241.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UWAGA: ilość znaków (nick+kod) nie może przekroczyć 24 znaków." textAlignment="CENTER" />
       <Text layoutX="431.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodatkowe opcje:" wrappingWidth="123.00000071525574" />
       <CheckBox fx:id="checkbox1" layoutX="432.0" layoutY="149.0" mnemonicParsing="false" text="Pomiar czasu tworzenia skoczków" />
       <CheckBox fx:id="checkbox2" layoutX="432.0" layoutY="178.0" mnemonicParsing="false" text="Licznik skoczków" />
-      <Text layoutX="46.0" layoutY="343.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="W razie problemów/wątpliwości zapoznaj się z plikiem README.txt. Pamiętaj, żeby wejść w Puchar Świata / Wybierz Zawodników." textAlignment="CENTER" />
-      <Text layoutX="55.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeśli zaznaczono dodatkową opcję &quot;Licznik skoczków&quot;, ilość znaków (nick+kod+ilość skoczków) nie może przekroczyć 23 znaków." textAlignment="CENTER" />
+      <Text layoutX="46.0" layoutY="393.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="W razie problemów/wątpliwości zapoznaj się z plikiem README.txt. Pamiętaj, żeby wejść w Puchar Świata / Wybierz Zawodników." textAlignment="CENTER" />
+      <Text layoutX="55.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeśli zaznaczono dodatkową opcję &quot;Licznik skoczków&quot;, ilość znaków (nick+kod+ilość skoczków) nie może przekroczyć 23 znaków." textAlignment="CENTER" />
       <Text layoutX="2.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ścieżka do pliku DSJ4:" textAlignment="RIGHT" wrappingWidth="196.99999904632568" />
       <Text layoutX="2.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nick + kod:" textAlignment="RIGHT" wrappingWidth="196.99999904632568" />
       <Text layoutX="2.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kraj:" textAlignment="RIGHT" wrappingWidth="196.99999904632568" />
-      <Text layoutX="2.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość skoczków:" textAlignment="RIGHT" wrappingWidth="196.99999904632568" />
+      <Text layoutX="2.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liczba skoczków:" textAlignment="RIGHT" wrappingWidth="196.99999904632568" />
       <Text layoutX="2.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Szybkość tworzenia graczy:" textAlignment="RIGHT" wrappingWidth="196.99999904632568" />
       <Text layoutX="2.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tworzenie stroju skoczka:" textAlignment="RIGHT" wrappingWidth="196.99999904632568" />
+      <Text layoutX="2.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wczytaj strój:" textAlignment="RIGHT" wrappingWidth="196.99999904632568" />
       <Text layoutX="432.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.5" text="PRZERWANIE WYKONYWANIA SKRYPTU: PRZYCISK ESC" textAlignment="CENTER" underline="true" />
    </children>
 </AnchorPane>
